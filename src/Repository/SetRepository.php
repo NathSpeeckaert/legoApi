@@ -75,4 +75,13 @@ class SetRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findOneWithStatus(int $id)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->where('s.id = :p1');
+        $qb->setParameter('p1', $id);
+        $qb->leftJoin('s.status', 'st');
+        $qb->addSelect('st');
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

@@ -2,10 +2,12 @@
 
 namespace App\DTO;
 
-class SetDTO
+use Symfony\Component\Validator\Constraints as Assert;
+
+class SetFormDTO
 {
 
-    private $id;
+
     private string $set_num;
     private string $name;
     private int $year;
@@ -15,11 +17,9 @@ class SetDTO
     private int $lego_price;
     private int $buy_price;
     private \DateTime $buy_date;
-    private $buy_loc;
+    private string $buy_loc;
     private \DateTime $sale_date;
-    private $sale_price;
-    private $status;
-
+    private int $sale_price;
     private int $status_id;
 
     /**
@@ -32,7 +32,7 @@ class SetDTO
 
     /**
      * @param mixed $status_id
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setStatusId($status_id)
     {
@@ -40,23 +40,6 @@ class SetDTO
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     * @return SetDTO
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
 
     /**
      * @return mixed
@@ -68,7 +51,7 @@ class SetDTO
 
     /**
      * @param mixed $set_num
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setSetNum($set_num)
     {
@@ -86,7 +69,7 @@ class SetDTO
 
     /**
      * @param mixed $name
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setName($name)
     {
@@ -104,7 +87,7 @@ class SetDTO
 
     /**
      * @param mixed $year
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setYear($year)
     {
@@ -122,7 +105,7 @@ class SetDTO
 
     /**
      * @param mixed $theme_id
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setThemeId($theme_id)
     {
@@ -140,7 +123,7 @@ class SetDTO
 
     /**
      * @param mixed $set_img_url
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setSetImgUrl($set_img_url)
     {
@@ -158,7 +141,7 @@ class SetDTO
 
     /**
      * @param mixed $set_url
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setSetUrl($set_url)
     {
@@ -176,7 +159,7 @@ class SetDTO
 
     /**
      * @param mixed $lego_price
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setLegoPrice($lego_price)
     {
@@ -194,7 +177,7 @@ class SetDTO
 
     /**
      * @param mixed $buy_price
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setBuyPrice($buy_price)
     {
@@ -212,7 +195,7 @@ class SetDTO
 
     /**
      * @param mixed $buy_date
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setBuyDate($buy_date)
     {
@@ -230,7 +213,7 @@ class SetDTO
 
     /**
      * @param mixed $buy_loc
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setBuyLoc($buy_loc)
     {
@@ -248,7 +231,7 @@ class SetDTO
 
     /**
      * @param mixed $sale_date
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setSaleDate($sale_date)
     {
@@ -266,7 +249,7 @@ class SetDTO
 
     /**
      * @param mixed $sale_price
-     * @return SetDTO
+     * @return SetFormDTO
      */
     public function setSalePrice($sale_price)
     {
@@ -274,23 +257,7 @@ class SetDTO
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
 
-    /**
-     * @param mixed $status
-     * @return SetDTO
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-        return $this;
-    }
 
 
 }

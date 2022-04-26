@@ -50,7 +50,7 @@ class Sets
     #[ORM\Column(type: 'integer', nullable:true)]
     private $sale_price;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\ManyToOne(targetEntity: Statuses::class)]
     private $status;
 
     public function getId(): ?int
@@ -202,12 +202,12 @@ class Sets
         return $this;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): ?Statuses
     {
         return $this->status;
     }
 
-    public function setStatus(int $status): self
+    public function setStatus(Statuses $status): self
     {
         $this->status = $status;
 
