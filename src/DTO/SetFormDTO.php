@@ -14,12 +14,13 @@ class SetFormDTO
     private int $theme_id;
     private string $set_img_url;
     private string $set_url;
-    private int $lego_price;
-    private int $buy_price;
+    #[Assert\PositiveOrZero]
+    private float $lego_price;
+    private float $buy_price;
     private \DateTime $buy_date;
     private string $buy_loc;
     private \DateTime $sale_date;
-    private int $sale_price;
+    private float $sale_price;
     private int $status_id;
 
     /**

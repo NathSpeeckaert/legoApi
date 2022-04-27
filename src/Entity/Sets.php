@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SetRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SetRepository::class)]
 #[ORM\Table(name: '`set`')]
@@ -14,7 +15,7 @@ class Sets
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 8)]
     private $set_num;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -32,23 +33,25 @@ class Sets
     #[ORM\Column(type: 'string', length: 255)]
     private $set_url;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float', nullable : true, options:['default'=> 0])]
+    #[ASSERT\PositiveOrZero]
     private $lego_price;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float', options:['default'=> 0])]
+    #[ASSERT\PositiveOrZero]
     private $buy_price;
 
     #[ORM\Column(type: 'date')]
     private $buy_date;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 100)]
     private $buy_loc;
 
     #[ORM\Column(type: 'date', nullable: true)]
     private $sale_date;
 
-    #[ORM\Column(type: 'integer', nullable:true)]
-    private $sale_price;
+    #[ORM\Column(type: 'float', nullable:true, options:['default'=> 0])]
+     private $sale_price;
 
     #[ORM\ManyToOne(targetEntity: Statuses::class)]
     private $status;
@@ -130,24 +133,24 @@ class Sets
         return $this;
     }
 
-    public function getLegoPrice(): ?int
+    public function getLegoPrice(): ?float
     {
         return $this->lego_price;
     }
 
-    public function setLegoPrice(int $lego_price): self
+    public function setLegoPrice(float $lego_price): self
     {
         $this->lego_price = $lego_price;
 
         return $this;
     }
 
-    public function getBuyPrice(): ?int
+    public function getBuyPrice(): ?float
     {
         return $this->buy_price;
     }
 
-    public function setBuyPrice(int $buy_price): self
+    public function setBuyPrice(float $buy_price): self
     {
         $this->buy_price = $buy_price;
 
@@ -190,12 +193,12 @@ class Sets
         return $this;
     }
 
-    public function getSalePrice(): ?int
+    public function getSalePrice(): ?float
     {
         return $this->sale_price;
     }
 
-    public function setSalePrice(int $sale_price): self
+    public function setSalePrice(float $sale_price): self
     {
         $this->sale_price = $sale_price;
 

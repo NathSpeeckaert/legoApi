@@ -48,23 +48,6 @@ class SetMapper
         return $sets;
 
     }
-    public static function CreateSet (SetFormDTO $dto ): Sets
-    {
-        $sets = new Sets();
-        $sets->setSetNum($dto->getSetNum());
-        $sets->setName($dto->getName());
-        $sets->setYear($dto->getYear());
-        $sets->setThemeId($dto->getThemeId());
-        $sets->setSetImgUrl($dto->getSetImgUrl());
-        $sets->setSetUrl($dto->getSetUrl());
-        $sets->setLegoPrice($dto->getLegoPrice());
-        $sets->setBuyPrice($dto->getBuyPrice());
-        $sets->setBuyDate($dto->getBuyDate());
-        $sets->setBuyLoc($dto->getBuyLoc());
-        $sets->setSaleDate($dto->getSaleDate());
-        $sets->setSalePrice($dto->getSalePrice());
-        return $sets;
 
-    }
 
 }

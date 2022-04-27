@@ -2,24 +2,25 @@
 
 namespace App\DTO;
 
+use App\Entity\Statuses;
+
 class SetDTO
 {
 
-    private $id;
+    private int $id;
     private string $set_num;
     private string $name;
     private int $year;
     private int $theme_id;
     private string $set_img_url;
     private string $set_url;
-    private int $lego_price;
-    private int $buy_price;
+    private float $lego_price;
+    private float $buy_price;
     private \DateTime $buy_date;
-    private $buy_loc;
+    private string $buy_loc;
     private \DateTime $sale_date;
-    private $sale_price;
-    private $status;
-
+    private float $sale_price;
+    private Statuses $status;
     private int $status_id;
 
     /**

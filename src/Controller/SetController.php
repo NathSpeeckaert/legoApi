@@ -61,10 +61,12 @@ class SetController extends AbstractFOSRestController
         if(count($errors)){
             throw new BadRequestHttpException();
         }
+        $set = new Sets();
         SetMapper::SetFormDTO($set, $dto);
         if($set->getStatus()->getId() !== $dto->getStatusId()){
             $set->setStatus($sRepo->find($dto->getStatusId()));
         }
+        $em->persist($set);
         $em->flush();
 
 
