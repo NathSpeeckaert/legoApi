@@ -198,7 +198,7 @@ class Sets
         return $this->sale_price;
     }
 
-    public function setSalePrice(float $sale_price): self
+    public function setSalePrice(?float $sale_price): self
     {
         $this->sale_price = $sale_price;
 

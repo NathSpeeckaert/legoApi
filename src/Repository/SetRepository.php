@@ -66,9 +66,13 @@ class SetRepository extends ServiceEntityRepository
             $qb->setParameter('p1', $fetcher->get('status'));
         }
         if($fetcher->get('search')){
-            $qb->andWhere('s.name LIKE :p2 OR s.theme_id LIKE :p2 OR s.set_num LIKE :p3');
+            $qb->andWhere('s.name LIKE :p2 OR s.set_num LIKE :p3');
             $qb->setParameter('p2','%'. $fetcher->get('search').'%');
             $qb->setParameter('p3', $fetcher->get('search').'%');
+        }
+        if($fetcher->get('theme')){
+            $qb->andWhere('s.theme_id=:p4');
+            $qb->setParameter('p4', $fetcher->get('theme'));
         }
         return $qb->getQuery()->getResult();
 }

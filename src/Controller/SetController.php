@@ -37,6 +37,7 @@ class SetController extends AbstractFOSRestController
     #[Get('/api/set')]
     #[QueryParam('status')]
     #[QueryParam('search')]
+    #[QueryParam('theme')]
     #[View]
     public function listSet (SetRepository $repo, ParamFetcherInterface $fetcher){
         $sets = $repo->findWithParameters($fetcher);
