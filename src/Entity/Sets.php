@@ -53,7 +53,7 @@ class Sets
     #[ORM\Column(type: 'float', nullable:true, options:['default'=> 0])]
      private $sale_price;
 
-    #[ORM\ManyToOne(targetEntity: Statuses::class)]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private $status;
 
     public function getId(): ?int
@@ -157,12 +157,12 @@ class Sets
         return $this;
     }
 
-    public function getBuyDate(): ?\DateTimeInterface
+    public function getBuyDate(): ?\DateTime
     {
         return $this->buy_date;
     }
 
-    public function setBuyDate(\DateTimeInterface $buy_date): self
+    public function setBuyDate(\DateTime $buy_date): self
     {
         $this->buy_date = $buy_date;
 
@@ -181,12 +181,12 @@ class Sets
         return $this;
     }
 
-    public function getSaleDate(): ?\DateTimeInterface
+    public function getSaleDate(): ?\DateTime
     {
         return $this->sale_date;
     }
 
-    public function setSaleDate(\DateTimeInterface $sale_date): self
+    public function setSaleDate(?\DateTime $sale_date): self
     {
         $this->sale_date = $sale_date;
 
@@ -205,12 +205,12 @@ class Sets
         return $this;
     }
 
-    public function getStatus(): ?Statuses
+    public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    public function setStatus(Statuses $status): self
+    public function setStatus(int $status): self
     {
         $this->status = $status;
 

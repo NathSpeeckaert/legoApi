@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use FOS\RestBundle\Request\ParamFetcherInterface;
 
 /**
  * @extends ServiceEntityRepository<Sets>
@@ -47,41 +48,62 @@ class SetRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Sets[] Returns an array of Sets objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Sets
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
     public function findOneWithStatus(int $id)
     {
         $qb = $this->createQueryBuilder('s');
         $qb->where('s.id = :p1');
         $qb->setParameter('p1', $id);
-        $qb->leftJoin('s.status', 'st');
-        $qb->addSelect('st');
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+
+    public function findWithParameters(ParamFetcherInterface $fetcher){
+        $qb=$this->createQueryBuilder('s');
+        //return $fetcher->get('status');
+        if($fetcher->get('status')){
+            $qb->andWhere('s.status = :p1');
+            $qb->setParameter('p1', $fetcher->get('status'));
+        }
+        if($fetcher->get('search')){
+            $qb->andWhere('s.name LIKE :p2 OR s.theme_id LIKE :p2 OR s.set_num LIKE :p3');
+            $qb->setParameter('p2','%'. $fetcher->get('search').'%');
+            $qb->setParameter('p3', $fetcher->get('search').'%');
+        }
+        return $qb->getQuery()->getResult();
 }
+
+
+
+
+
+}
+
+// /**
+//  * @return Sets[] Returns an array of Sets objects
+//  */
+/*
+public function findByExampleField($value)
+{
+    return $this->createQueryBuilder('s')
+        ->andWhere('s.exampleField = :val')
+        ->setParameter('val', $value)
+        ->orderBy('s.id', 'ASC')
+        ->setMaxResults(10)
+        ->getQuery()
+        ->getResult()
+    ;
+}
+*/
+
+/*
+public function findOneBySomeField($value): ?Sets
+{
+    return $this->createQueryBuilder('s')
+        ->andWhere('s.exampleField = :val')
+        ->setParameter('val', $value)
+        ->getQuery()
+        ->getOneOrNullResult()
+    ;
+}
+*/

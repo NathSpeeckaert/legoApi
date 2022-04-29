@@ -6,8 +6,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class SetFormDTO
 {
-
-
     private string $set_num;
     private string $name;
     private int $year;
@@ -19,25 +17,26 @@ class SetFormDTO
     private float $buy_price;
     private \DateTime $buy_date;
     private string $buy_loc;
-    private \DateTime $sale_date;
-    private float $sale_price;
-    private int $status_id;
+    private ?\DateTime $sale_date = null;
+    private ?float $sale_price = null;
+    private int $status;
+
 
     /**
      * @return mixed
      */
-    public function getStatusId()
+    public function getStatus()
     {
-        return $this->status_id;
+        return $this->status;
     }
 
     /**
-     * @param mixed $status_id
+     * @param mixed $status
      * @return SetFormDTO
      */
-    public function setStatusId($status_id)
+    public function setStatus($status)
     {
-        $this->status_id = $status_id;
+        $this->status = $status;
         return $this;
     }
 

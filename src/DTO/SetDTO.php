@@ -18,28 +18,11 @@ class SetDTO
     private float $buy_price;
     private \DateTime $buy_date;
     private string $buy_loc;
-    private \DateTime $sale_date;
-    private float $sale_price;
-    private Statuses $status;
-    private int $status_id;
+    private ?\DateTime $sale_date;
+    private ?float $sale_price;
+    private int $status;
 
-    /**
-     * @return mixed
-     */
-    public function getStatusId()
-    {
-        return $this->status_id;
-    }
 
-    /**
-     * @param mixed $status_id
-     * @return SetDTO
-     */
-    public function setStatusId($status_id)
-    {
-        $this->status_id = $status_id;
-        return $this;
-    }
 
     /**
      * @return mixed

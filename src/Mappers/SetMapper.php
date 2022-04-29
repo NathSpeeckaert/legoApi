@@ -25,7 +25,6 @@ class SetMapper
         $dto->setSaleDate($sets->getSaleDate());
         $dto->setSalePrice($sets->getSalePrice());
         $dto->setStatus($sets->getStatus());
-        $dto->setStatusId($sets->getStatus()->getId());
         return $dto;
 
     }
@@ -45,6 +44,7 @@ class SetMapper
         $sets->setBuyLoc($dto->getBuyLoc());
         $sets->setSaleDate($dto->getSaleDate());
         $sets->setSalePrice($dto->getSalePrice());
+        $sets->setStatus($dto->getStatus());
         return $sets;
 
     }
