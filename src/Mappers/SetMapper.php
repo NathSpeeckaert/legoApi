@@ -49,5 +49,9 @@ class SetMapper
 
     }
 
+    public static function CountSets ($nbSets){
+        
+    }
+
 
 }

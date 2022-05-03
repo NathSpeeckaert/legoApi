@@ -66,4 +66,15 @@ class SetController extends AbstractFOSRestController
         $em->flush();
     }
 
+    // #[Get('/api/homeCount')]
+    // #[View]
+    // public function countAllSets (SetRepository $repo){
+    //     $count = $repo->countAll();
+    //     dd($count);
+    //     return  $count;
+
+
+
+    // }
+
 }

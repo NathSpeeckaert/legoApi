@@ -75,7 +75,25 @@ class SetRepository extends ServiceEntityRepository
             $qb->setParameter('p4', $fetcher->get('theme'));
         }
         return $qb->getQuery()->getResult();
-}
+    }
+
+    public function countAll(){
+        $qb=$this->createQueryBuilder('s');
+        $qb->addSelect('count (*)');
+        return $qb->getQuery()->getSingleScalarResult();
+
+    }
+
+    public function countByStatus(){
+        $qb=$this->createQueryBuilder('s');
+        
+        $qb->addSelect('distinct(status),count(status)');
+        $qb->groupBy('status');
+        return $qb->getQuery()->getArrayResult();
+
+    }
+
+
 
 
 
