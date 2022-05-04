@@ -2,6 +2,7 @@
 
 namespace App\Mappers;
 
+use App\DTO\CountDTO;
 use App\DTO\SetDTO;
 use App\DTO\SetFormDTO;
 use App\Entity\Sets;
@@ -49,9 +50,12 @@ class SetMapper
 
     }
 
-    public static function CountSets ($nbSets){
-        
-    }
+//    public static function toCountDTO (): CountDTO{
+//        $dto = new CountDTO();
+//
+//
+//
+//    }
 
 
 }

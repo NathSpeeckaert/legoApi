@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DTO\CountDTO;
 use App\DTO\SetDTO;
 use App\DTO\SetFormDTO;
 use App\Entity\Sets;
@@ -66,15 +67,20 @@ class SetController extends AbstractFOSRestController
         $em->flush();
     }
 
-    // #[Get('/api/homeCount')]
-    // #[View]
-    // public function countAllSets (SetRepository $repo){
-    //     $count = $repo->countAll();
-    //     dd($count);
-    //     return  $count;
+     #[Get('/api/homeCount')]
+     #[View]
+     public function countAllSets (SetRepository $repo) {
+        $dto = new CountDTO();
+        $dto->setTotal($repo->countAll());
+        $cpt = $repo->countByStatus();
+         $dto->setTotalSold($cpt[0]['cpt']);
+         $dto->setTotalSealed($cpt[1]['cpt']);
+        $dto->setTotalBuilt($cpt[2]['cpt']);
+        $dto->setTotalPending($cpt[3]['cpt']);
+     return  $dto;
 
 
 
-    // }
+     }
 
 }

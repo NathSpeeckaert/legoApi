@@ -79,7 +79,7 @@ class SetRepository extends ServiceEntityRepository
 
     public function countAll(){
         $qb=$this->createQueryBuilder('s');
-        $qb->addSelect('count (*)');
+        $qb->select('count (s.id)');
         return $qb->getQuery()->getSingleScalarResult();
 
     }
@@ -87,8 +87,9 @@ class SetRepository extends ServiceEntityRepository
     public function countByStatus(){
         $qb=$this->createQueryBuilder('s');
         
-        $qb->addSelect('distinct(status),count(status)');
-        $qb->groupBy('status');
+        $qb->select('distinct(s.status) as statut ,count(s.status) as cpt');
+        $qb->groupBy('s.status');
+        $qb->orderBy('s.status');
         return $qb->getQuery()->getArrayResult();
 
     }
